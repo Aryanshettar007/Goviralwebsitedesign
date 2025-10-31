@@ -1,20 +1,15 @@
 import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { 
-  Sparkles, 
-  TrendingUp, 
-  Shield, 
-  Zap, 
-  Users, 
-  DollarSign,
-  Instagram,
-  Twitter,
-  Linkedin,
-  Mail
+import {
+  Card, CardContent, CardDescription, CardHeader, CardTitle,
+} from "./ui/card";
+import {
+  Sparkles, TrendingUp, Shield, Zap, Users, DollarSign,
+  Instagram, Twitter, Linkedin, Mail, LogIn, UserPlus
 } from "lucide-react";
 
+// Update the interface at the top of the file
 interface LandingPageProps {
-  onNavigate: (view: 'landing' | 'creator' | 'promoter' | 'admin') => void;
+  onNavigate: (view: 'landing' | 'creator' | 'promoter' | 'admin' | 'login' | 'signup' | 'dashboard') => void;
 }
 
 export default function LandingPage({ onNavigate }: LandingPageProps) {
@@ -23,56 +18,87 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => onNavigate("landing")}
+          >
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 via-purple-500 to-orange-500 flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl">GoViral</span>
+            <span className="text-xl font-semibold">GoViral</span>
           </div>
+
           <nav className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-gray-600 hover:text-gray-900">Features</a>
             <a href="#how-it-works" className="text-gray-600 hover:text-gray-900">How It Works</a>
             <a href="#testimonials" className="text-gray-600 hover:text-gray-900">Testimonials</a>
-            <Button variant="ghost" onClick={() => onNavigate('admin')}>Admin</Button>
+            <Button variant="ghost" onClick={() => onNavigate("admin")}>Admin</Button>
           </nav>
+
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              className="flex items-center gap-1 text-gray-700 hover:text-pink-600"
+              onClick={() => onNavigate("login")}
+            >
+              <LogIn className="w-4 h-4" />
+              Login
+            </Button>
+            <Button
+              className="flex items-center gap-1 bg-gradient-to-r from-pink-500 to-purple-500 text-white hover:opacity-90"
+              onClick={() => onNavigate("signup")}
+            >
+              <UserPlus className="w-4 h-4" />
+              Sign Up
+            </Button>
+          </div>
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-purple-100 to-orange-100 opacity-50" />
         <div className="absolute top-20 left-10 w-72 h-72 bg-pink-300 rounded-full blur-3xl opacity-20 animate-pulse" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl opacity-20 animate-pulse" />
-        
+
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <div className="inline-block px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 rounded-full text-white text-sm mb-6">
             ✨ AI-Powered Influencer Marketing
           </div>
-          <h1 className="text-5xl md:text-7xl mb-6 bg-gradient-to-r from-pink-600 via-purple-600 to-orange-600 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl mb-6 bg-gradient-to-r from-pink-600 via-purple-600 to-orange-600 bg-clip-text text-transparent font-extrabold">
             GoViral – Bridge Creators & Influencers
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
             AI-powered platform for smart, fair, and transparent promotions. Connect with the right influencers and grow your brand exponentially.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all"
-              onClick={() => onNavigate('creator')}
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-6 rounded-xl shadow-lg hover:shadow-xl"
+              onClick={() => onNavigate("creator")}
             >
-              I'm a Creator/Brand
+              Join as Creator / Brand
             </Button>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant="outline"
-              className="border-2 border-purple-500 text-purple-600 hover:bg-purple-50 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all"
-              onClick={() => onNavigate('promoter')}
+              className="border-2 border-purple-500 text-purple-600 hover:bg-purple-50 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl"
+              onClick={() => onNavigate("promoter")}
             >
-              I'm a Promoter
+              Join as Promoter
             </Button>
           </div>
         </div>
       </section>
+
+      {/* keep all of your existing sections below exactly as they are */}
+      {/* How It Works */}
+      {/* Smart Features */}
+      {/* Why GoViral */}
+      {/* Testimonials */}
+      {/* Footer */}
+
+
 
       {/* How It Works Section */}
       <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-purple-50">
@@ -307,6 +333,6 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
           </div>
         </div>
       </footer>
-    </div>
+          </div>
   );
 }
