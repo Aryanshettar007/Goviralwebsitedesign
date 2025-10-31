@@ -103,8 +103,8 @@ export default function PromoterDashboard({ onNavigate }: PromoterDashboardProps
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {[
                   { label: 'Pending Requests', value: '2', icon: MessageSquare, gradient: 'from-orange-500 to-pink-500' },
-                  { label: 'Total Earnings', value: '$25,200', icon: DollarSign, gradient: 'from-pink-500 to-purple-500' },
-                  { label: 'This Month', value: '$6,100', icon: TrendingUp, gradient: 'from-purple-500 to-indigo-500' },
+                  { label: 'Total Earnings', value: '₹25,200', icon: DollarSign, gradient: 'from-pink-500 to-purple-500' },
+                  { label: 'This Month', value: '₹6,100', icon: TrendingUp, gradient: 'from-purple-500 to-indigo-500' },
                   { label: 'Completed Deals', value: '86', icon: CheckCircle, gradient: 'from-indigo-500 to-blue-500' }
                 ].map((stat, index) => (
                   <Card key={index} className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
@@ -206,7 +206,7 @@ export default function PromoterDashboard({ onNavigate }: PromoterDashboardProps
                         </div>
                         <div className="text-right">
                           <div className="text-3xl bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-                            ${request.price}
+                            ₹{request.price}
                           </div>
                           <div className="text-sm text-gray-600">{request.contentType}</div>
                         </div>
@@ -254,7 +254,7 @@ export default function PromoterDashboard({ onNavigate }: PromoterDashboardProps
                   </CardHeader>
                   <CardContent>
                     <div className="text-4xl bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent mb-2">
-                      ${totalEarnings.toLocaleString()}
+                      ₹{totalEarnings.toLocaleString()}
                     </div>
                     <p className="text-sm text-green-600">+24% from last period</p>
                   </CardContent>
@@ -266,7 +266,7 @@ export default function PromoterDashboard({ onNavigate }: PromoterDashboardProps
                   </CardHeader>
                   <CardContent>
                     <div className="text-4xl bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                      ${Math.round(totalEarnings / totalDeals)}
+                      ₹{Math.round(totalEarnings / totalDeals)}
                     </div>
                     <p className="text-sm text-gray-600">Based on {totalDeals} deals</p>
                   </CardContent>
@@ -278,7 +278,7 @@ export default function PromoterDashboard({ onNavigate }: PromoterDashboardProps
                   </CardHeader>
                   <CardContent>
                     <div className="text-4xl bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
-                      $6,100
+                      ₹6,100
                     </div>
                     <p className="text-sm text-green-600">21 completed deals</p>
                   </CardContent>
@@ -325,21 +325,21 @@ export default function PromoterDashboard({ onNavigate }: PromoterDashboardProps
                   <CardContent>
                     <div className="text-center py-6">
                       <div className="text-6xl bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent mb-4">
-                        $420
+                        ₹420
                       </div>
                       <p className="text-gray-600 mb-6">Recommended base price per post</p>
                       <div className="space-y-2 text-sm text-left bg-white/60 backdrop-blur-sm rounded-xl p-4">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Price Range:</span>
-                          <span className="">$336 - $504</span>
+                          <span className="">₹336 - ₹504</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Stories (each):</span>
-                          <span className="">$168</span>
+                          <span className="">₹168</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Reels:</span>
-                          <span className="">$630</span>
+                          <span className="">₹630</span>
                         </div>
                       </div>
                     </div>
@@ -357,12 +357,12 @@ export default function PromoterDashboard({ onNavigate }: PromoterDashboardProps
                   <CardContent className="space-y-4">
                     <div className="p-4 rounded-xl bg-white/60 backdrop-blur-sm">
                       <div className="text-sm text-gray-600 mb-1">Your Niche Average</div>
-                      <div className="text-2xl">$385</div>
+                      <div className="text-2xl">₹385</div>
                       <p className="text-sm text-green-600 mt-1">You're above average! 🎉</p>
                     </div>
                     <div className="p-4 rounded-xl bg-white/60 backdrop-blur-sm">
                       <div className="text-sm text-gray-600 mb-1">Top 10% in Your Niche</div>
-                      <div className="text-2xl">$550+</div>
+                      <div className="text-2xl">₹550+</div>
                       <p className="text-sm text-gray-600 mt-1">Increase engagement to reach this tier</p>
                     </div>
                     <div className="p-4 rounded-xl bg-white/60 backdrop-blur-sm">

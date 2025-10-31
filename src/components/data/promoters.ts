@@ -1,3 +1,5 @@
+// src/components/data/promoters.ts
+
 export interface Promoter {
   id: string;
   name: string;
@@ -9,6 +11,10 @@ export interface Promoter {
   price: number;
   avatar: string;
   gradient: string;
+  image1?: string;
+  image2?: string;
+  bio?: string;
+  location?: string;
 }
 
 export const mockPromoters: Promoter[] = [
@@ -22,7 +28,11 @@ export const mockPromoters: Promoter[] = [
     engagement: '4.8%',
     price: 420,
     avatar: 'SM',
-    gradient: 'from-pink-500 to-rose-500'
+    gradient: 'from-pink-500 to-rose-500',
+    image1: '/images/promoters/fashion1.jpg',
+    image2: '/images/promoters/fashion2.jpg',
+    bio: 'Passionate fashion influencer creating trendy outfit inspirations.',
+    location: 'Los Angeles, USA'
   },
   {
     id: '2',
@@ -34,7 +44,11 @@ export const mockPromoters: Promoter[] = [
     engagement: '5.6%',
     price: 750,
     avatar: 'AC',
-    gradient: 'from-purple-500 to-indigo-500'
+    gradient: 'from-purple-500 to-indigo-500',
+    image1: '/images/promoters/tech1.jpg',
+    image2: '/images/promoters/tech2.jpg',
+    bio: 'Tech reviewer focusing on gadgets, innovation, and lifestyle products.',
+    location: 'San Francisco, USA'
   },
   {
     id: '3',
@@ -46,7 +60,11 @@ export const mockPromoters: Promoter[] = [
     engagement: '4.4%',
     price: 320,
     avatar: 'ER',
-    gradient: 'from-orange-500 to-pink-500'
+    gradient: 'from-orange-500 to-pink-500',
+    image1: '/images/promoters/lifestyle1.jpg',
+    image2: '/images/promoters/lifestyle2.jpg',
+    bio: 'Lifestyle creator sharing positivity, routines, and wellness tips.',
+    location: 'Miami, USA'
   },
   {
     id: '4',
@@ -58,7 +76,11 @@ export const mockPromoters: Promoter[] = [
     engagement: '4.7%',
     price: 480,
     avatar: 'MJ',
-    gradient: 'from-green-500 to-emerald-500'
+    gradient: 'from-green-500 to-emerald-500',
+    image1: '/images/promoters/fitness1.jpg',
+    image2: '/images/promoters/fitness2.jpg',
+    bio: 'Personal trainer helping others achieve their dream body.',
+    location: 'New York, USA'
   },
   {
     id: '5',
@@ -70,54 +92,10 @@ export const mockPromoters: Promoter[] = [
     engagement: '5.2%',
     price: 630,
     avatar: 'LT',
-    gradient: 'from-pink-500 to-purple-500'
-  },
-  {
-    id: '6',
-    name: 'David Park',
-    handle: '@foodie_adventures',
-    niche: 'Food',
-    followers: '280K',
-    avgViews: '14K',
-    engagement: '5.0%',
-    price: 520,
-    avatar: 'DP',
-    gradient: 'from-amber-500 to-orange-500'
-  },
-  {
-    id: '7',
-    name: 'Sophie Williams',
-    handle: '@travel_diaries',
-    niche: 'Travel',
-    followers: '380K',
-    avgViews: '18K',
-    engagement: '4.7%',
-    price: 580,
-    avatar: 'SW',
-    gradient: 'from-blue-500 to-cyan-500'
-  },
-  {
-    id: '8',
-    name: 'James Taylor',
-    handle: '@gaming_central',
-    niche: 'Gaming',
-    followers: '450K',
-    avgViews: '25K',
-    engagement: '5.5%',
-    price: 680,
-    avatar: 'JT',
-    gradient: 'from-violet-500 to-purple-500'
-  },
-  {
-    id: '9',
-    name: 'Nina Patel',
-    handle: '@wellness_guru',
-    niche: 'Health & Wellness',
-    followers: '210K',
-    avgViews: '10K',
-    engagement: '4.8%',
-    price: 380,
-    avatar: 'NP',
-    gradient: 'from-teal-500 to-green-500'
+    gradient: 'from-pink-500 to-purple-500',
+    image1: '/images/promoters/beauty1.jpg',
+    image2: '/images/promoters/beauty2.jpg',
+    bio: 'Beauty content creator specializing in skincare and product reviews.',
+    location: 'London, UK'
   }
 ];

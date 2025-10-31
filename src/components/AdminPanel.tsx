@@ -96,8 +96,8 @@ export default function AdminPanel({ onNavigate }: AdminPanelProps) {
                 {[
                   { label: 'Total Users', value: totalUsers.toLocaleString(), icon: Users, gradient: 'from-indigo-500 to-purple-500', change: '+12%' },
                   { label: 'Active Campaigns', value: activeCampaigns, icon: Activity, gradient: 'from-purple-500 to-pink-500', change: '+8%' },
-                  { label: 'Total Revenue', value: `$${(totalRevenue / 1000).toFixed(0)}K`, icon: DollarSign, gradient: 'from-pink-500 to-rose-500', change: '+24%' },
-                  { label: 'Commission Earned', value: `$${(commission / 1000).toFixed(1)}K`, icon: TrendingUp, gradient: 'from-rose-500 to-orange-500', change: '+24%' }
+                  { label: 'Total Revenue', value: `₹${(totalRevenue / 1000).toFixed(0)}K`, icon: DollarSign, gradient: 'from-pink-500 to-rose-500', change: '+24%' },
+                  { label: 'Commission Earned', value: `₹${(commission / 1000).toFixed(1)}K`, icon: TrendingUp, gradient: 'from-rose-500 to-orange-500', change: '+24%' }
                 ].map((stat, index) => (
                   <Card key={index} className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
                     <CardHeader className="pb-3">
@@ -301,7 +301,7 @@ export default function AdminPanel({ onNavigate }: AdminPanelProps) {
                           <TableCell>{dispute.date}</TableCell>
                           <TableCell>{dispute.creator}</TableCell>
                           <TableCell>{dispute.promoter}</TableCell>
-                          <TableCell>${dispute.amount}</TableCell>
+                          <TableCell>₹{dispute.amount}</TableCell>
                           <TableCell className="max-w-xs truncate">{dispute.reason}</TableCell>
                           <TableCell>
                             <Badge className={
@@ -391,7 +391,7 @@ export default function AdminPanel({ onNavigate }: AdminPanelProps) {
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {[
-                      { label: 'Avg Deal Price', value: '$420' },
+                      { label: 'Avg Deal Price', value: '₹420' },
                       { label: 'Success Rate', value: '94%' },
                       { label: 'Avg Response Time', value: '2.3h' },
                       { label: 'User Satisfaction', value: '4.8/5' }
@@ -417,10 +417,10 @@ export default function AdminPanel({ onNavigate }: AdminPanelProps) {
               {/* Transaction Stats */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {[
-                  { label: 'Total Volume', value: '$284.5K', icon: DollarSign },
+                  { label: 'Total Volume', value: '₹284.5K', icon: DollarSign },
                   { label: 'Transactions', value: '487', icon: Activity },
-                  { label: 'Avg Transaction', value: '$584', icon: TrendingUp },
-                  { label: 'Commission', value: '$28.4K', icon: Sparkles }
+                  { label: 'Avg Transaction', value: '₹584', icon: TrendingUp },
+                  { label: 'Commission', value: '₹28.4K', icon: Sparkles }
                 ].map((stat, index) => (
                   <Card key={index} className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
                     <CardHeader className="pb-3">
@@ -464,8 +464,8 @@ export default function AdminPanel({ onNavigate }: AdminPanelProps) {
                           <TableCell>
                             <Badge variant="outline">{transaction.userType}</Badge>
                           </TableCell>
-                          <TableCell>${transaction.amount}</TableCell>
-                          <TableCell className="text-green-600">${transaction.commission}</TableCell>
+                          <TableCell>₹{transaction.amount}</TableCell>
+                          <TableCell className="text-green-600">₹{transaction.commission}</TableCell>
                           <TableCell>
                             <Badge className={
                               transaction.status === 'Completed' ? 'bg-green-100 text-green-700' :

@@ -17,7 +17,8 @@ import {
   Target,
   ArrowLeft
 } from "lucide-react";
-import { mockPromoters } from "./data/promoters";
+import { Promoter, mockPromoters } from "./data/promoters";
+
 import { mockCampaigns } from "./data/campaigns";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
@@ -31,6 +32,9 @@ export default function CreatorDashboard({ onNavigate }: CreatorDashboardProps) 
   const [followers, setFollowers] = useState("");
   const [avgViews, setAvgViews] = useState("");
   const [predictedPrice, setPredictedPrice] = useState<number | null>(null);
+const [selectedPromoter, setSelectedPromoter] = useState<Promoter | null>(null);
+
+
 
   const filteredPromoters = mockPromoters.filter(promoter =>
     promoter.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -126,7 +130,7 @@ export default function CreatorDashboard({ onNavigate }: CreatorDashboardProps) 
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {[
                   { label: 'Active Campaigns', value: '3', icon: Target, gradient: 'from-pink-500 to-rose-500' },
-                  { label: 'Total Spent', value: '$1,550', icon: DollarSign, gradient: 'from-purple-500 to-indigo-500' },
+                  { label: 'Total Spent', value: '₹1,550', icon: DollarSign, gradient: 'from-purple-500 to-indigo-500' },
                   { label: 'Avg Engagement', value: '4.8%', icon: TrendingUp, gradient: 'from-orange-500 to-pink-500' },
                   { label: 'Promoters Worked', value: '12', icon: Users, gradient: 'from-indigo-500 to-purple-500' }
                 ].map((stat, index) => (
@@ -192,7 +196,7 @@ export default function CreatorDashboard({ onNavigate }: CreatorDashboardProps) 
                           </Badge>
                           <div className="text-right">
                             <div className="text-sm text-gray-600">Price</div>
-                            <div className="">${campaign.price}</div>
+                            <div className="">₹{campaign.price}</div>
                           </div>
                         </div>
                       </div>
@@ -265,12 +269,19 @@ export default function CreatorDashboard({ onNavigate }: CreatorDashboardProps) 
                         <div>
                           <div className="text-sm text-gray-600">GoViral Price</div>
                           <div className="text-2xl bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                            ${promoter.price}
+                              ₹{promoter.price}
                           </div>
                         </div>
-                        <Button className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white rounded-xl">
-                          Contact
-                        </Button>
+                       <Button
+  onClick={() => {
+    setSelectedPromoter(promoter);
+    setActiveTab("promoter-details");
+  }}
+  className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white rounded-xl"
+>
+  Contact
+</Button>
+
                       </div>
                     </CardContent>
                   </Card>
@@ -330,7 +341,7 @@ export default function CreatorDashboard({ onNavigate }: CreatorDashboardProps) 
                             </div>
                             <div className="text-right">
                               <div className="text-3xl bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                                ${campaign.price}
+                                ₹{campaign.price}
                               </div>
                               <Button variant="outline" className="rounded-xl">View Details</Button>
                             </div>
@@ -400,7 +411,7 @@ export default function CreatorDashboard({ onNavigate }: CreatorDashboardProps) 
                     {predictedPrice !== null ? (
                       <div className="text-center py-8">
                         <div className="text-6xl bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent mb-4">
-                          ${predictedPrice}
+                          ₹{predictedPrice}
                         </div>
                         <p className="text-gray-600 mb-6">Recommended price based on AI analysis</p>
                         <div className="space-y-2 text-sm text-left bg-white/60 backdrop-blur-sm rounded-xl p-4">
@@ -479,6 +490,105 @@ export default function CreatorDashboard({ onNavigate }: CreatorDashboardProps) 
               </Card>
             </div>
           )}
+          {activeTab === 'promoter-details' && selectedPromoter && (
+  <div className="space-y-6">
+    <Button
+      variant="ghost"
+      className="flex items-center gap-2 mb-6"
+      onClick={() => setActiveTab("find-promoters")}
+    >
+      <ArrowLeft className="w-5 h-5" /> Back to Promoters
+    </Button>
+
+    <div className="flex flex-col lg:flex-row gap-8">
+      {/* Left Section - Promoter Images */}
+      <div className="lg:w-2/3 space-y-4">
+        <div className="grid grid-cols-2 gap-4">
+          <img
+            src={selectedPromoter.image1 || "https://via.placeholder.com/400"}
+            alt={selectedPromoter.name}
+            className="rounded-2xl object-cover w-full h-80"
+          />
+          <img
+            src={selectedPromoter.image2 || "https://via.placeholder.com/400"}
+            alt="Sample Work"
+            className="rounded-2xl object-cover w-full h-80"
+          />
+        </div>
+      </div>
+
+      {/* Right Section - Promoter Info */}
+      <div className="lg:w-1/3 space-y-4">
+        <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4 mb-4">
+              <div
+                className={`w-16 h-16 rounded-full bg-gradient-to-br ${selectedPromoter.gradient} flex items-center justify-center text-white text-xl`}
+              >
+                {selectedPromoter.avatar}
+              </div>
+              <div>
+                <h2 className="text-2xl font-semibold">{selectedPromoter.name}</h2>
+                <p className="text-gray-500">{selectedPromoter.handle}</p>
+                <Badge>{selectedPromoter.niche}</Badge>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex justify-between">
+                <span className="text-gray-600">Followers:</span>
+                <span>{selectedPromoter.followers}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Avg Views:</span>
+                <span>{selectedPromoter.avgViews}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Engagement:</span>
+                <span className="text-green-600">{selectedPromoter.engagement}</span>
+              </div>
+            </div>
+
+            <div className="pt-6 border-t mt-4">
+              <div className="text-sm text-gray-600 mb-1">GoViral Price</div>
+              <div className="text-3xl bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                ₹{selectedPromoter.price}
+              </div>
+            </div>
+
+            <Button className="mt-6 w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white rounded-xl">
+              Contact Promoter
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+
+    {/* Analytics Section */}
+    <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+      <CardHeader>
+        <CardTitle>Analytics</CardTitle>
+        <CardDescription>Performance overview from Instagram</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={[
+            { metric: 'Followers', value: parseInt(selectedPromoter.followers.replace('K', '000')) },
+            { metric: 'Views', value: parseInt(selectedPromoter.avgViews.replace('K', '000')) },
+            { metric: 'Engagement', value: parseFloat(selectedPromoter.engagement) * 1000 },
+          ]}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="metric" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="value" fill="#ec4899" radius={[8, 8, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </CardContent>
+    </Card>
+  </div>
+)}
+
         </main>
       </div>
     </div>
